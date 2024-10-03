@@ -18,6 +18,12 @@ void showMenu() {
     printf("Digite a quantidade de figuras (menor ou igual a zero para aleatorio)");
     scanf("%d", &numberOfFigures);
 
+    if(numberOfFigures >100) {
+        numberOfFigures = 100;
+    } else if(numberOfFigures <=0) {
+        numberOfFigures = generateRandomNumber();
+    }
+
     switch (option)
     {
     case 1:
