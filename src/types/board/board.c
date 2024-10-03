@@ -26,6 +26,26 @@ void initializeBoard(Board *board) {
     }
 }
 
+int fitsOnBoardPosition(Board * board, int row, int col, int size) {
+    for( int i = 0; i < size; i++ ) {
+        for(int j = 0; j < size; j++) {
+            if(board->grid[i][j] != ' ') {
+                return 0;
+            }
+        }
+    }
+
+    return 1;
+}
+
+void insertOnBoard(Board* board, char **figure, int row, int col, int size) {
+    for(int i=0; i < size; i++) {
+        for(int j = 0; j< size; j++) {
+            board->grid[row + i][col + j] = figure[i][j];
+        }
+    }
+}
+
 void printBoard(Board* board) {
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
@@ -39,5 +59,4 @@ void printBoard(Board* board) {
 void freeBoard(Board* board) {
     free(board);
 }
-
 

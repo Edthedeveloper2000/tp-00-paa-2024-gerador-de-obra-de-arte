@@ -8,7 +8,8 @@ typedef struct _board Board;
 
 Board* createBoard();
 void initializeBoard(Board* board);
-void insertOnBoard(Board* board, char figure[3][3], );
+int fitsOnBoardPosition(Board * board, int row, int col, int size);
+void insertOnBoard(Board* board, char **figure, int row, int col, int size);
 void printBoard(Board* board);
 void freeBoard(Board* board);
 
