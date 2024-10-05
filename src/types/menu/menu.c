@@ -4,7 +4,7 @@
 
 void showMenu() {
     int option;
-    int numberOfBoards;
+    int figuresQuantity;
     
     Board* board = createBoard();
 
@@ -18,29 +18,29 @@ void showMenu() {
     scanf("%d", &option);
 
     printf("Digite a quantidade de figuras (menor ou igual a zero para aleatorio): ");
-    scanf("%d", &numberOfBoards);
+    scanf("%d", &figuresQuantity);
 
-    if (numberOfBoards > 100) {
-        numberOfBoards = 100;
-    } else if (numberOfBoards <= 0) {
-        numberOfBoards = generateRandomNumber();
+    if (figuresQuantity > 100) {
+        figuresQuantity = 100;
+    } else if (figuresQuantity <= 0) {
+        figuresQuantity = generateRandomNumber();
     }
 
     switch (option) {
         case 1:
-            generateWithSingleAsterisk(board, numberOfBoards);
+            generateWithSingleAsterisk(board, figuresQuantity);
             break;
         case 2:
-            generateWithSumSymbol(board, numberOfBoards);
+            generateWithSumSymbol(board, figuresQuantity);
             break;
         case 3:
-            generateWithXSymbol(board, numberOfBoards);
+            generateWithXSymbol(board, figuresQuantity);
             break;
         case 4:
-            generateWithRandomSymbols(board, numberOfBoards);
+            generateWithRandomSymbols(board, figuresQuantity);
             break;
         case 5:
-            generateCustomBoard(board, numberOfBoards);
+            generateCustomBoard(board, figuresQuantity);
             break;
         default:
             printf("Opção inválida.\n");
