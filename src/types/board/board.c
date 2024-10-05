@@ -84,7 +84,7 @@ void generateWithXSymbol(Board* board, int numberOfFigures) {
 
 void generateWithRandomSymbols(Board* board, int numberOfFigures) {
     for (int i = 0; i < numberOfFigures; i++) {
-        int randomChoice = rand() % 2; 
+        int randomChoice = rand() % 3; 
 
         if (randomChoice == 0) {
             char *asterisk[1] = { "*" };
