@@ -4,7 +4,6 @@
 #define WIDTH 80
 #define HEIGHT 20
 
-#include "utils.h"
 #include "stdio.h"
 #include "stdlib.h"
 

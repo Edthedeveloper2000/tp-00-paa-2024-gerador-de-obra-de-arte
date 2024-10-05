@@ -19,11 +19,11 @@ void showMenu() {
 
     printf("Digite a quantidade de figuras (menor ou igual a zero para aleatorio): ");
     scanf("%d", &figuresQuantity);
-
+   
     if (figuresQuantity > 100) {
         figuresQuantity = 100;
     } else if (figuresQuantity <= 0) {
-        figuresQuantity = generateRandomNumber();
+        figuresQuantity = rand();
     }
 
     switch (option) {
@@ -38,9 +38,6 @@ void showMenu() {
             break;
         case 4:
             generateWithRandomSymbols(board, figuresQuantity);
-            break;
-        case 5:
-            generateCustomBoard(board, figuresQuantity);
             break;
         default:
             printf("Opção inválida.\n");
