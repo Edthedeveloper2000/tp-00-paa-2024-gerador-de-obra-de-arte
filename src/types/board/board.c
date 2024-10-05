@@ -38,10 +38,66 @@ int fitsOnBoardPosition(Board * board, int row, int col, int size) {
     return 1;
 }
 
+void placeFigureOnBoard(Board *board, char **figure, int size) {
+    int row, col;
+
+    do {
+        row = generateRandomNumber() % (WIDTH - 5) + 2;
+        col = generateRandomNumber() % (WIDTH - 5) + 2;
+    } while(!fitsOnBoardPosition(board, row, col, size));
+
+    insertOnBoard(board, figure, row, col, size);
+}
+
 void insertOnBoard(Board* board, char **figure, int row, int col, int size) {
     for(int i=0; i < size; i++) {
         for(int j = 0; j< size; j++) {
             board->grid[row + i][col + j] = figure[i][j];
+        }
+    }
+}
+
+
+void generateWithSingleAsterisk(Board* board, int numberOfFigures) {
+    char *figure[1] = { "*" }; 
+    int size = 1;
+
+    for (int i = 0; i < numberOfFigures; i++) {
+        placeFigureOnBoard(board, figure, size);
+    }
+}
+
+void generateWithSumSymbol(Board* board, int numberOfFigures) {
+    char *figure[3] = { " * ", "***", " * " };
+    int size = 3;
+
+    for (int i = 0; i < numberOfFigures; i++) {
+        placeFigureOnBoard(board, figure, size);
+    }
+}
+
+void generateWithXSymbol(Board* board, int numberOfFigures) {
+    char *figure[3] = { "* *", " * ", "* *" };
+    int size = 3;
+
+    for (int i = 0; i < numberOfFigures; i++) {
+        placeFigureOnBoard(board, figure, size);
+    }
+}
+
+void generateWithRandomSymbols(Board* board, int numberOfFigures) {
+    for (int i = 0; i < numberOfFigures; i++) {
+        int randomChoice = generateRandomNumber() % 3;
+
+        if (randomChoice == 0) {
+            char *asterisk[1] = { "*" };
+            placeFigureOnBoard(board, asterisk, 1);
+        } else if (randomChoice == 1) {
+            char *sumSymbol[3] = { " * ", "***", " * " };
+            placeFigureOnBoard(board, sumSymbol, 3);
+        } else if (randomChoice == 2) {
+            char *xSymbol[3] = { "* *", " * ", "* *" };
+            placeFigureOnBoard(board, xSymbol, 3);
         }
     }
 }
