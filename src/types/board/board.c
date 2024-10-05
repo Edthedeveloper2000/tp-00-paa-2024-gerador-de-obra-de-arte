@@ -29,7 +29,7 @@ void initializeBoard(Board *board) {
 int fitsOnBoardPosition(Board * board, int row, int col, int size) {
     for( int i = 0; i < size; i++ ) {
         for(int j = 0; j < size; j++) {
-            if(board->grid[i][j] != ' ') {
+            if(board->grid[row + i] [col + j] != ' ') {
                 return 0;
             }
         }
