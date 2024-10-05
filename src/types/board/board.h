@@ -5,21 +5,33 @@
 #define HEIGHT 20
 
 #include "utils.h"
+#include "stdio.h"
+#include "stdlib.h"
 
 typedef struct _board Board;
 
+#include "board.h"
+
 Board* createBoard();
-void initializeBoard(Board* board);
+
+void initializeBoard(Board *board);
+
 int fitsOnBoardPosition(Board * board, int row, int col, int size);
-void placeFigureOnBoard(Board *board, char **figure, int size);
+
 void insertOnBoard(Board* board, char **figure, int row, int col, int size);
-void printBoard(Board* board);
-void freeBoard(Board* board);
+
+void generateFigures(Board* board, char** figure, int size, int numberOfFigures);
 
 void generateWithSingleAsterisk(Board* board, int numberOfFigures);
+
 void generateWithSumSymbol(Board* board, int numberOfFigures);
+
 void generateWithXSymbol(Board* board, int numberOfFigures);
+
 void generateWithRandomSymbols(Board* board, int numberOfFigures);
-void generateCustomBoard(Board* board, int numberOfFigures);
+
+void printBoard(Board* board);
+
+void freeBoard(Board* board);
 
 #endif

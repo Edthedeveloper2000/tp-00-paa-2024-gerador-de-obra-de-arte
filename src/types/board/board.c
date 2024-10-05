@@ -38,17 +38,6 @@ int fitsOnBoardPosition(Board * board, int row, int col, int size) {
     return 1;
 }
 
-void placeFigureOnBoard(Board *board, char **figure, int size) {
-    int row, col;
-
-    do {
-        row = generateRandomNumber() % (WIDTH - 5) + 2;
-        col = generateRandomNumber() % (WIDTH - 5) + 2;
-    } while(!fitsOnBoardPosition(board, row, col, size));
-
-    insertOnBoard(board, figure, row, col, size);
-}
-
 void insertOnBoard(Board* board, char **figure, int row, int col, int size) {
     for(int i=0; i < size; i++) {
         for(int j = 0; j< size; j++) {
@@ -57,50 +46,59 @@ void insertOnBoard(Board* board, char **figure, int row, int col, int size) {
     }
 }
 
+void generateFigures(Board* board, char** figure, int size, int numberOfFigures) {
+    for (int i = 0; i < numberOfFigures; i++) {
+        int row, col;
+
+        do {
+            row = rand() % (HEIGHT - size + 1); 
+            col = rand() % (WIDTH - size + 1);  
+        } while(!fitsOnBoardPosition(board, row, col, size));
+
+        insertOnBoard(board, figure, row, col, size);
+    }
+}
+
 
 void generateWithSingleAsterisk(Board* board, int numberOfFigures) {
     char *figure[1] = { "*" }; 
     int size = 1;
 
-    for (int i = 0; i < numberOfFigures; i++) {
-        placeFigureOnBoard(board, figure, size);
-    }
+    generateFigures(board, figure, size, numberOfFigures);
+
 }
 
 void generateWithSumSymbol(Board* board, int numberOfFigures) {
     char *figure[3] = { " * ", "***", " * " };
     int size = 3;
 
-    for (int i = 0; i < numberOfFigures; i++) {
-        placeFigureOnBoard(board, figure, size);
-    }
+    generateFigures(board, figure, size, numberOfFigures);
 }
 
 void generateWithXSymbol(Board* board, int numberOfFigures) {
     char *figure[3] = { "* *", " * ", "* *" };
     int size = 3;
-
-    for (int i = 0; i < numberOfFigures; i++) {
-        placeFigureOnBoard(board, figure, size);
-    }
+    
+    generateFigures(board, figure, size, numberOfFigures);
 }
 
 void generateWithRandomSymbols(Board* board, int numberOfFigures) {
     for (int i = 0; i < numberOfFigures; i++) {
-        int randomChoice = generateRandomNumber() % 3;
+        int randomChoice = rand() % 2; 
 
         if (randomChoice == 0) {
             char *asterisk[1] = { "*" };
-            placeFigureOnBoard(board, asterisk, 1);
+            generateFigures(board, asterisk, 1, 1);
         } else if (randomChoice == 1) {
             char *sumSymbol[3] = { " * ", "***", " * " };
-            placeFigureOnBoard(board, sumSymbol, 3);
+            generateFigures(board, sumSymbol, 3, 1);
         } else if (randomChoice == 2) {
             char *xSymbol[3] = { "* *", " * ", "* *" };
-            placeFigureOnBoard(board, xSymbol, 3);
+            generateFigures(board, xSymbol, 3, 1);
         }
     }
 }
+
 
 void printBoard(Board* board) {
     for (int i = 0; i < HEIGHT; i++) {
