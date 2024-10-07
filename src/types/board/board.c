@@ -139,8 +139,6 @@ void insertTransformed(Board *board, char* face) {
         col = rand() % (WIDTH - 3);
     } while (!fitsOnBoardPosition(board, row, col, 3));
 
-    printf("going to insert %s\n", newFace);
-
     insertTransformedOnBoard(board, newFace, row, col);
 }
 
