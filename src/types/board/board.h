@@ -4,12 +4,12 @@
 #define WIDTH 80
 #define HEIGHT 20
 
+#include <string.h>
 #include "stdio.h"
 #include "stdlib.h"
+#include "board.h"
 
 typedef struct _board Board;
-
-#include "board.h"
 
 Board* createBoard();
 
@@ -28,6 +28,9 @@ void generateWithSumSymbol(Board* board, int numberOfFigures);
 void generateWithXSymbol(Board* board, int numberOfFigures);
 
 void generateWithRandomSymbols(Board* board, int numberOfFigures);
+
+void generateCustomArt(Board* board, int numberOfFigures);
+void insertTransformed(Board *board, char*face);
 
 void printBoard(Board* board);
 

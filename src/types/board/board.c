@@ -82,6 +82,69 @@ void generateWithXSymbol(Board* board, int numberOfFigures) {
     generateFigures(board, figure, size, numberOfFigures);
 }
 
+void generateCustomArt(Board *board, int numberOfFigures) {
+    char *figures[4] = { "+_+", ">_<", "-_-", "0-0" };
+    
+    for(int i = 0; i < numberOfFigures; i++) {
+        int randomChoice = rand() % 4;
+        char* selectedFace = figures[randomChoice];
+
+        insertTransformed(board, selectedFace);
+    }
+}
+
+void insertTransformedOnBoard(Board* board, char* newFace, int row, int col) {
+    for(int i = 0; i < 3; i++) {
+        if (board->grid[row][col + i] == ' ') {
+            board->grid[row][col + i] = newFace[i];
+        }
+    }
+}
+
+
+void insertTransformed(Board *board, char* face) {
+    int transformation = rand() % 4;
+    char newFace[4];
+
+    switch (transformation) {
+    case 0:
+        strcpy(newFace, face);
+        break;
+    case 1:
+        newFace[0] = face[2];
+        newFace[1] = face[1];
+        newFace[2] = face[0];
+        newFace[3] = '\0';
+        break;
+    case 2:
+        newFace[0] = face[0];
+        newFace[1] = face[2];
+        newFace[2] = face[1];
+        newFace[3] = '\0';
+        break;
+    case 3:
+        newFace[0] = face[0];
+        newFace[1] = ',';
+        newFace[2] = face[2];
+        newFace[3] = '\0';
+        break;
+    default:
+        strcpy(newFace, face);
+        break;
+    }
+
+    int row, col;
+    do {
+        row = rand() % (HEIGHT - 1);
+        col = rand() % (WIDTH - 3);
+    } while (!fitsOnBoardPosition(board, row, col, 3));
+
+    printf("going to insert %s\n", newFace);
+
+    insertTransformedOnBoard(board, newFace, row, col);
+}
+
+
 void generateWithRandomSymbols(Board* board, int numberOfFigures) {
     for (int i = 0; i < numberOfFigures; i++) {
         int randomChoice = rand() % 3; 

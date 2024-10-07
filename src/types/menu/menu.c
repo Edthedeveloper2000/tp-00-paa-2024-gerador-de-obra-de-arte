@@ -39,6 +39,9 @@ void showMenu() {
         case 4:
             generateWithRandomSymbols(board, figuresQuantity);
             break;
+        case 5:
+            generateCustomArt(board, figuresQuantity);
+            break;
         default:
             printf("Opção inválida.\n");
             break;
