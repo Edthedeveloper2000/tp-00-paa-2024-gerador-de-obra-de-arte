@@ -142,23 +142,24 @@ void insertTransformed(Board *board, char* face) {
     insertTransformedOnBoard(board, newFace, row, col);
 }
 
-
 void generateWithRandomSymbols(Board* board, int numberOfFigures) {
     for (int i = 0; i < numberOfFigures; i++) {
-        int randomChoice = rand() % 3; 
+        int randomChoice = rand() % 3;
 
-        if (randomChoice == 0) {
-            char *asterisk[1] = { "*" };
-            generateFigures(board, asterisk, 1, 1);
-        } else if (randomChoice == 1) {
-            char *sumSymbol[3] = { " * ", "***", " * " };
-            generateFigures(board, sumSymbol, 3, 1);
-        } else if (randomChoice == 2) {
-            char *xSymbol[3] = { "* *", " * ", "* *" };
-            generateFigures(board, xSymbol, 3, 1);
+        switch (randomChoice) {
+            case 0:
+                generateWithSingleAsterisk(board, 1);
+                break;
+            case 1:
+                generateWithSumSymbol(board, 1);
+                break;
+            case 2:
+                generateWithXSymbol(board, 1);
+                break;
         }
     }
 }
+
 
 
 void printBoard(Board* board) {
